@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from xml.etree import ElementTree
 import argparse
 import os
 import sys
@@ -16,6 +17,7 @@ args = parser.parse_args()
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RELEASE_NAME = 'com.supercell.clashofclans-{}'.format(args.version)
 DECODED_DIR = os.path.join(BASE_DIR, RELEASE_NAME)
+MANIFEST_PATH = os.path.join(DECODED_DIR, 'AndroidManifest.xml')
 LIBG_ARM = os.path.join(DECODED_DIR, 'lib', 'armeabi-v7a', 'libg.so')
 LIBG_X86 = os.path.join(DECODED_DIR, 'lib', 'x86', 'libg.so')
 BUILD_DIR = os.path.join(DECODED_DIR, 'build')
@@ -57,6 +59,9 @@ if not os.path.isfile(APK_PATH):
     print('ERROR: {} does not exist.'.format(APK_FILENAME), file=sys.stderr)
     sys.exit(1)
 
+if 'package' not in config or not config['package']:
+    print('ERROR: New package ID missing from config.json.', file=sys.stderr)
+    sys.exit(1)
 if 'key' not in config or not config['key']:
     print('ERROR: New key missing from config.json.', file=sys.stderr)
     sys.exit(1)
@@ -240,6 +245,46 @@ except subprocess.CalledProcessError as e:
     else:
         print('ERROR: Failed to decode {}.'.format(APK_FILENAME), file=sys.stderr)
     sys.exit(1)
+
+print('Checking AndroidManifest.xml ...')
+
+if not os.path.isfile(MANIFEST_PATH):
+    print('ERROR: AndroidManifest.xml is missing.', file=sys.stderr)
+    sys.exit(1)
+
+print('Checking package ID ...')
+
+ElementTree.register_namespace('android', 'http://schemas.android.com/apk/res/android')
+try:
+    tree = ElementTree.parse('{}'.format(MANIFEST_PATH))
+except ElementTree.ParseError as e:
+    print('ERROR: Failed to parse AndroidManifest.xml.', file=sys.stderr)
+    sys.exit(1)
+
+root = tree.getroot()
+if root.get('package') != 'com.supercell.clashofclans':
+    print('ERROR: Package is incorrect.', file=sys.stderr)
+    sys.exit(1)
+
+print('Patching package ID ...')
+
+root.set('package', config['package'])
+tree.write(MANIFEST_PATH, encoding='utf-8', xml_declaration=True)
+
+print('Verifying package ID ...')
+
+try:
+    tree = ElementTree.parse('{}'.format(MANIFEST_PATH))
+except ElementTree.ParseError as e:
+    print('ERROR: Failed to parse AndroidManifest.xml.', file=sys.stderr)
+    sys.exit(1)
+
+root = tree.getroot()
+if root.get('package') != config['package']:
+    print('ERROR: Package is incorrect.', file=sys.stderr)
+    sys.exit(1)
+
+print('Checking libg.so ...')
 
 if not os.path.isfile(LIBG_X86):
     print('ERROR: arm libg.so is missing.', file=sys.stderr)
