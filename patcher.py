@@ -14,17 +14,17 @@ parser.add_argument('--json', help='use config.json for version info', action='s
 args = parser.parse_args()
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-APK_BASE = 'com.supercell.clashofclans-{}'.format(args.version)
-DECODED_DIR = os.path.join(BASE_DIR, APK_BASE)
+RELEASE_NAME = 'com.supercell.clashofclans-{}'.format(args.version)
+DECODED_DIR = os.path.join(BASE_DIR, RELEASE_NAME)
 LIBG_ARM = os.path.join(DECODED_DIR, 'lib', 'armeabi-v7a', 'libg.so')
 LIBG_X86 = os.path.join(DECODED_DIR, 'lib', 'x86', 'libg.so')
 BUILD_DIR = os.path.join(DECODED_DIR, 'build')
-APK_FILE = '{}.apk'.format(APK_BASE)
-APK_PATH = os.path.join(BASE_DIR, APK_FILE)
-BACKUP_PATH = os.path.join(BASE_DIR, '{}-orig.apk'.format(APK_BASE))
-UNSIGNED_PATH = os.path.join(BUILD_DIR, '{}-unsigned.apk'.format(APK_BASE))
-UNALIGNED_PATH = os.path.join(BUILD_DIR, '{}-unaligned.apk'.format(APK_BASE))
-PATCHED_PATH = os.path.join(BASE_DIR, APK_FILE)
+APK_FILENAME = '{}.apk'.format(RELEASE_NAME)
+APK_PATH = os.path.join(BASE_DIR, APK_FILENAME)
+BACKUP_PATH = os.path.join(BASE_DIR, '{}-orig.apk'.format(RELEASE_NAME))
+UNSIGNED_PATH = os.path.join(BUILD_DIR, '{}-unsigned.apk'.format(RELEASE_NAME))
+UNALIGNED_PATH = os.path.join(BUILD_DIR, '{}-unaligned.apk'.format(RELEASE_NAME))
+PATCHED_PATH = os.path.join(BASE_DIR, APK_FILENAME)
 KEYSTORE_PATH = os.path.join(BASE_DIR, 'client.keystore')
 
 def ask(question):
@@ -54,7 +54,7 @@ else:
 print('Checking environment ...')
 
 if not os.path.isfile(APK_PATH):
-    print('ERROR: {} does not exist.'.format(APK_FILE), file=sys.stderr)
+    print('ERROR: {} does not exist.'.format(APK_FILENAME), file=sys.stderr)
     sys.exit(1)
 
 if 'key' not in config or not config['key']:
@@ -232,9 +232,9 @@ try:
     result.check_returncode()
 except subprocess.CalledProcessError as e:
     if config['debug']:
-        print('ERROR: Failed to decode {} ({}).'.format(APK_FILE, result.stderr.strip().rstrip('.').replace('{}/'.format(BASE_DIR), '')), file=sys.stderr)
+        print('ERROR: Failed to decode {} ({}).'.format(APK_FILENAME, result.stderr.strip().rstrip('.').replace('{}/'.format(BASE_DIR), '')), file=sys.stderr)
     else:
-        print('ERROR: Failed to decode {}.'.format(APK_FILE), file=sys.stderr)
+        print('ERROR: Failed to decode {}.'.format(APK_FILENAME), file=sys.stderr)
     sys.exit(1)
 
 if not os.path.isfile(LIBG_X86):
@@ -433,9 +433,9 @@ try:
     result.check_returncode()
 except subprocess.CalledProcessError as e:
     if config['debug']:
-        print('ERROR: Failed to build {} ({}).'.format(APK_BASE, result.stderr.strip().rstrip('.').replace('{}/'.format(BASE_DIR), '')), file=sys.stderr)
+        print('ERROR: Failed to build {} ({}).'.format(RELEASE_NAME, result.stderr.strip().rstrip('.').replace('{}/'.format(BASE_DIR), '')), file=sys.stderr)
     else:
-        print('ERROR: Failed to build {}.'.format(APK_BASE), file=sys.stderr)
+        print('ERROR: Failed to build {}.'.format(RELEASE_NAME), file=sys.stderr)
     sys.exit(1)
 
 print('Signing APK ...')
@@ -445,9 +445,9 @@ try:
     result.check_returncode()
 except subprocess.CalledProcessError as e:
     if config['debug']:
-        print('ERROR: Failed to build {} ({}).'.format(APK_BASE, result.stderr.strip().rstrip('.').replace('{}/'.format(BASE_DIR), '')), file=sys.stderr)
+        print('ERROR: Failed to build {} ({}).'.format(RELEASE_NAME, result.stderr.strip().rstrip('.').replace('{}/'.format(BASE_DIR), '')), file=sys.stderr)
     else:
-        print('ERROR: Failed to build {}.'.format(APK_BASE), file=sys.stderr)
+        print('ERROR: Failed to build {}.'.format(RELEASE_NAME), file=sys.stderr)
     sys.exit(1)
 
 shutil.move(UNSIGNED_PATH, UNALIGNED_PATH)
@@ -459,9 +459,9 @@ try:
     result.check_returncode()
 except subprocess.CalledProcessError as e:
     if config['debug']:
-        print('ERROR: Failed to build {} ({}).'.format(APK_BASE, result.stderr.strip().rstrip('.').replace('{}/'.format(BASE_DIR), '')), file=sys.stderr)
+        print('ERROR: Failed to build {} ({}).'.format(RELEASE_NAME, result.stderr.strip().rstrip('.').replace('{}/'.format(BASE_DIR), '')), file=sys.stderr)
     else:
-        print('ERROR: Failed to build {}.'.format(APK_BASE), file=sys.stderr)
+        print('ERROR: Failed to build {}.'.format(RELEASE_NAME), file=sys.stderr)
     sys.exit(1)
 
 shutil.rmtree(DECODED_DIR)
