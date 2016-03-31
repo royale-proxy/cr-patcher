@@ -137,6 +137,7 @@ except subprocess.CalledProcessError as e:
 else:
     if result.stdout.split('\n')[0].strip(', ').split(', ')[-1] != 'PrivateKeyEntry':
         print('ERROR: Key alias must refer to a private key.', file=sys.stderr)
+        sys.exit(1)
 
 if 'paths' not in config:
     print('ERROR: Paths are missing from config.json.', file=sys.stderr)
