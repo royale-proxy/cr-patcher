@@ -45,4 +45,4 @@ By default, `coc-patcher` will retrieve the keys, MD5s, and key and URL offsets 
 
     Note: `requests` and `requests-cache` can be installed with:
 
-      python3.5 -m pip install requests requests-cache
+        python3.5 -m pip install requests requests-cache
