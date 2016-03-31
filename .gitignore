@@ -1,0 +1,5 @@
+.idea
+*.pyc
+*.apk
+*.keystore
+cache.sqlite
