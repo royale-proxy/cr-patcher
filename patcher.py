@@ -128,12 +128,15 @@ if not os.path.isfile(KEYSTORE_PATH):
         print('ERROR: client.keystore is missing.', file=sys.stderr)
         sys.exit(1)
 
-result = subprocess.run([config['paths']['keytool'], '-list', '-keystore', KEYSTORE_PATH, '-storepass', config['keystore']['storepass']], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+result = subprocess.run([config['paths']['keytool'], '-list', '-keystore', KEYSTORE_PATH, '-storepass', config['keystore']['storepass'], '-alias', config['keystore']['key']['alias']], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 try:
     result.check_returncode()
 except subprocess.CalledProcessError as e:
-    print('ERROR: Failed to load keystore.', file=sys.stderr)
+    print('ERROR: Failed to load key from keystore.', file=sys.stderr)
     sys.exit(1)
+else:
+    if result.stdout.split('\n')[0].strip(', ').split(', ')[-1] != 'PrivateKeyEntry':
+        print('ERROR: Key alias must refer to a private key.', file=sys.stderr)
 
 if 'paths' not in config:
     print('ERROR: Paths are missing from config.json.', file=sys.stderr)
