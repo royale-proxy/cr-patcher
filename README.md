@@ -39,7 +39,7 @@ By default, `coc-patcher` will retrieve the keys, MD5s, and key and URL offsets 
 
 - [Apktool](http://ibotpeaches.github.io/Apktool/)
 - `keytool` and `jarsigner` from the [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-- `md5sum` and `dd` from [Coreutils](http://www.gnu.org/software/coreutils/coreutils.html) (get binaries for Windows [here](https://sourceforge.net/projects/unxutils/))
+- `md5sum` and `dd` from [Coreutils](http://www.gnu.org/software/coreutils/coreutils.html) (Windows binaries available in [Git for Windows](https://git-scm.com/download/win))
 - `zipalign` from the [Android SDK](http://developer.android.com/sdk/index.html#Other)
 - [requests](http://python-requests.org/) and [requests-cache](https://github.com/reclosedev/requests-cache)
 
