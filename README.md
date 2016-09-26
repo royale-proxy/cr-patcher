@@ -2,7 +2,7 @@
 
 # cr-patcher
 
-_Patches and signs the Clash of Clans APK_
+_Patches and signs the Clash Royale APK_
 
 Run with:
 
