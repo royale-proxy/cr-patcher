@@ -1,0 +1,43 @@
+{
+    "debug": true,
+    "package": "com.supercell.clashroyale",
+    "key": "72f1a4a4c48e44da0c42310f800e96624e6dc6a641a9d41c3b5039d8dfadc27e",
+    "url": "game.clashroyaleapp.com",
+    "keystore": {
+        "storepass": "teststorepass",
+        "key": {
+            "alias": "testalias",
+            "keypass": "testkeypass",
+            "dname": {
+                "cn": "testcn",
+                "ou": "testou",
+                "o": "testo",
+                "l": "testl",
+                "s": "tests",
+                "c": "testc"
+            }
+        }
+    },
+    "paths": {
+        "apktool": "",
+        "dd": "/bin/dd",
+        "keytool": "/usr/bin/keytool",
+        "jarsigner": "/usr/bin/jarsigner",
+        "zipalign": ""
+    },
+    "versions": {
+        "1.5.0": {
+            "key": "bbdba8653396d1df84efaea923ecd150d15eb526a46a6c39b53dac974fff3829",
+            "arm": {
+                "md5": "f99a1e9b2693c12d6d14b90f693790cc",
+                "key-offset": "4145180",
+                "url-offset": "3381192"
+            },
+            "x86": {
+                "md5": "95c2c8b6c946459d799fe1037f0fbd0f",
+                "key-offset": "6029340",
+                "url-offset": "4551145"
+            }
+        }
+    }
+}
