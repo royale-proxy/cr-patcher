@@ -1,6 +1,6 @@
-**Warning:** With version 8.212.12, Supercell has started banning accounts for the use of third party software. I am unsure what, if any, checks are in place that might reveal the use of these patches, so continue use at your own risk.  See [here](http://supercell.com/en/safe-and-fair-play/) for more info.
+**Warning:** Your account may be banned for using these tools
 
-# coc-patcher
+# cr-patcher
 
 _Patches and signs the Clash of Clans APK_
 
@@ -10,9 +10,9 @@ Run with:
 
 For example:
 
-    python3.5 patcher.py 2.212.9
+    python3.5 patcher.py 1.5.0
 
-By default, `coc-patcher` will retrieve the keys, MD5s, and key and URL offsets from the [`coc-proxy` wiki](https://github.com/clugh/coc-proxy/wiki).  To provide these values for a new or unknown APK version, enter them in `config.json` and use the `--json` flag.  Enter them with the following layout:
+By default, `cr-patcher` will retrieve the keys, MD5s, and key and URL offsets from the [`cr-proxy` wiki](https://github.com/royale-proxy/cr-proxy/wiki).  To provide these values for a new or unknown APK version, enter them in `config.json` and use the `--json` flag.  Enter them with the following layout:
 
     "versions": {
       "8.212.9": {
@@ -34,14 +34,13 @@ By default, `coc-patcher` will retrieve the keys, MD5s, and key and URL offsets 
 
 1. Install dependencies.
 2. Fill in the `config.json` file.
-
+3. Download the APK and run python3.5 patcher.py --json 1.5.0
     Note: The `keypass` and `dname` fields are only required to create a new keystore.  See [here](http://docs.oracle.com/javase/7/docs/technotes/tools/solaris/keytool.html#DName) for how to fill out the `dname` fields.
 
 ## Dependencies
 
 - [Apktool](http://ibotpeaches.github.io/Apktool/)
 - `keytool` and `jarsigner` from the [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-- `md5sum` and `dd` from [Coreutils](http://www.gnu.org/software/coreutils/coreutils.html) (Windows binaries available in [Git for Windows](https://git-scm.com/download/win))
 - `zipalign` from the [Android SDK](http://developer.android.com/sdk/index.html#Other)
 - [requests](http://python-requests.org/) and [requests-cache](https://github.com/reclosedev/requests-cache)
 
