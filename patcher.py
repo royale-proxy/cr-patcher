@@ -188,15 +188,15 @@ else:
     def retrieve_version_info():
         pages = OrderedDict([
             ('keys', {
-                'url': 'https://github.com/clugh/coc-proxy/wiki/Keys.md',
+                'url': 'https://github.com/royale-proxy/cr-proxy/wiki/Keys.md',
                 'fields' : ['version', 'key']
             }),
             ('key-offsets', {
-                'url': 'https://github.com/clugh/coc-proxy/wiki/Key-Offsets.md',
+                'url': 'https://github.com/royale-proxy/cr-proxy/wiki/Key-Offsets.md',
                 'fields' : ['version', 'arch', 'md5', 'offset']
             }),
             ('url-offsets', {
-                'url': 'https://github.com/clugh/coc-proxy/wiki/URL-Offsets.md',
+                'url': 'https://github.com/royale-proxy/cr-proxy/wiki/URL-Offsets.md',
                 'fields' : ['version', 'arch', 'md5', 'offset']
             })
         ])
@@ -214,12 +214,15 @@ else:
         info['key'] = data['keys'][0]['key']
         for line in data['key-offsets']:
             info[line['arch']] = OrderedDict()
-            info[line['arch']]['md5'] = line['md5']
-            info[line['arch']]['key-offset'] = line['offset']
+            info[line['arch']]['md5'] = line['md5'].strip()
+            info[line['arch']]['key-offset'] = line['offset'].strip()
+       
         for line in data['url-offsets']:
+            
             if line['arch'] not in info:
                 raise VersionError('{} not in key-offsets.'.format(line['arch']))
-            if line['md5'] != info[line['arch']]['md5']:
+            if line['md5'].strip() != info[line['arch'].strip()]['md5']:
+				
                 raise VersionError('MD5s for {} do not match.'.format(line['arch']))
             info[line['arch']]['url-offset'] = line['offset']
         return info
