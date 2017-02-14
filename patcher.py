@@ -396,14 +396,14 @@ except subprocess.CalledProcessError as e:
 
 print('Patching URLs ...')
 
-result = subprocess.run([config['paths']['dd'], 'of={}'.format(LIBG_ARM), 'seek={}'.format(info['arm']['url-offset']), 'bs=1', 'count=22', 'conv=notrunc'], input=config['url'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+result = subprocess.run([config['paths']['dd'], 'of={}'.format(LIBG_ARM), 'seek={}'.format(info['arm']['url-offset']), 'bs=1', 'count=23', 'conv=notrunc'], input=config['url'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 try:
     result.check_returncode()
 except subprocess.CalledProcessError as e:
     print('ERROR: Failed to patch arm libg.so URL.', file=sys.stderr)
     sys.exit(1)
 
-result = subprocess.run([config['paths']['dd'], 'of={}'.format(LIBG_X86), 'seek={}'.format(info['x86']['url-offset']), 'bs=1', 'count=22', 'conv=notrunc'], input=config['url'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+result = subprocess.run([config['paths']['dd'], 'of={}'.format(LIBG_X86), 'seek={}'.format(info['x86']['url-offset']), 'bs=1', 'count=23', 'conv=notrunc'], input=config['url'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 try:
     result.check_returncode()
 except subprocess.CalledProcessError as e:
