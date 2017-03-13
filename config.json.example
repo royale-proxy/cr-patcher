@@ -64,6 +64,19 @@
             "key-offset": "5931044",
             "url-offset": "4452609"
           }
+        },
+        "1.8.0": {
+          "key": "9e6657f2b419c237f6aeef37088690a642010586a7bd9018a15652bab8370f4f",
+          "arm": {
+            "md5": "9bd69697a5af0f40dc2d37a4e88e0f35",
+            "key-offset": "5042212",
+            "url-offset": "4174681"
+          },
+          "x86": {
+            "md5": "6b9d520b7d97838582d71861feeace63",
+            "key-offset": "8093732",
+            "url-offset": "6313949"
+          }
         }
     }
 }
