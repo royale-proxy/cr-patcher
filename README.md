@@ -33,7 +33,7 @@ By default, `cr-patcher` will retrieve the keys, MD5s, and key and URL offsets f
 ## Installation
 
 1. Install [dependencies](#dependencies).
-2. Fill in the `config.json` file. The changes that you *have* to made are:
+2. Copy the `config.json.example` file to `config.json` (so you can do it again when you break something) and fill it in. The changes that you *have* to made are:
 * in `paths`, set `apktool` to the path of your Apktool wrapper script. If you exactly followed the instructions on their website, on Windows, the path is `C:\Windows\apktool.bat` while on Linux and Mac `/usr/local/bin/apktool`
 * in `paths`, set `zipalign` to the path of this program (look in the *Dependencies* section)
 3. Download the APK and run python3.5 patcher.py --json 1.5.0
