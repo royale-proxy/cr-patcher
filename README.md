@@ -21,6 +21,7 @@ For example:
 By default, `cr-patcher` will retrieve the keys, MD5s, and key and URL offsets from the [`cr-proxy` wiki](https://github.com/royale-proxy/cr-proxy/wiki).  To provide these values for a new or unknown APK version, enter them in `config.json` and use the `--json` flag. 
 
 <details><summary>If you need to, enter them with this layout (click to expand)</summary><p>
+
 ```
 "versions": {
   "8.212.9": {
@@ -39,7 +40,6 @@ By default, `cr-patcher` will retrieve the keys, MD5s, and key and URL offsets f
 }
 ```
 </p></details>
-
 
 ## Installation
 
