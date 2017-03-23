@@ -1,34 +1,45 @@
-**Warning:** Your account may be banned for using these tools
+**Warning:** In April 2016, Supercell has started banning accounts for the use of third party software. We are unsure what, if any, checks are in place that might reveal the use of this tool, so continue at your own risk. See [here](http://supercell.com/en/safe-and-fair-play/) for more info.
 
 # cr-patcher
 
-_Patches and signs the Clash Royale APK_
+This tool makes some modification to the APK of Clash Royale. It can be used for example to make the game connect to your server or [proxy](https://github.com/royale-proxy/cr-proxy) instead of the official one.
 
-Run with:
+To start, you need an .apk of the game. You can download an official for example [here](http://www.apkmirror.com/uploads/?q=clash-royale-supercell). Put it to this folder (the one where `patcher.py` is). The name should match the following format:
+
+    <package>-<version>.apk
+    
+If you use the official APK, the package is `com.supercell.clashroyale`, so an example file name is `com.supercell.clashroyale-1.8.1.apk`
+
+Run the script with:
 
     python3.5 patcher.py [--json] version-number
 
 For example:
 
-    python3.5 patcher.py 1.5.0
+    python3.5 patcher.py 1.8.1
 
-By default, `cr-patcher` will retrieve the keys, MD5s, and key and URL offsets from the [`cr-proxy` wiki](https://github.com/royale-proxy/cr-proxy/wiki).  To provide these values for a new or unknown APK version, enter them in `config.json` and use the `--json` flag.  Enter them with the following layout:
+By default, `cr-patcher` will retrieve the keys, MD5s, and key and URL offsets from the [`cr-proxy` wiki](https://github.com/royale-proxy/cr-proxy/wiki).  To provide these values for a new or unknown APK version, enter them in `config.json` and use the `--json` flag. 
 
-    "versions": {
-      "8.212.9": {
-        "key": "469b704e7f6009ba8fc72e9b5c864c8e9285a755c5190f03f5c74852f6d9f419",
-        "arm": {
-          "md5": "769e2e9e1258b75d15cb7e04b2e49de3",
-          "key-offset": "4280344",
-          "url-offset": "3534513"
-        },
-        "x86": {
-          "md5": "29ca23e48a5e419e83f2a7988c842d3e",
-          "key-offset": "6189080",
-          "url-offset": "4768816"
-        }
-      }
+<details><summary>If you need to, enter them with this layout (click to expand)</summary><p>
+```
+"versions": {
+  "8.212.9": {
+    "key": "469b704e7f6009ba8fc72e9b5c864c8e9285a755c5190f03f5c74852f6d9f419",
+    "arm": {
+      "md5": "769e2e9e1258b75d15cb7e04b2e49de3",
+      "key-offset": "4280344",
+      "url-offset": "3534513"
+    },
+    "x86": {
+      "md5": "29ca23e48a5e419e83f2a7988c842d3e",
+      "key-offset": "6189080",
+      "url-offset": "4768816"
     }
+  }
+}
+```
+</p></details>
+
 
 ## Installation
 
