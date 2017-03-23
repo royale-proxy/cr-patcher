@@ -32,7 +32,7 @@ By default, `cr-patcher` will retrieve the keys, MD5s, and key and URL offsets f
 
 ## Installation
 
-1. Install dependencies.
+1. Install [dependencies](https://github.com/Nicofisi/cr-patcher#dependencies).
 2. Fill in the `config.json` file. The changes that you *have* to made are:
 * in `paths`, set `apktool` to the path of your Apktool wrapper script. If you exactly followed the instructions on their website, on Windows, the path is `C:\Windows\apktool.bat` while on Linux and Mac `/usr/local/bin/apktool`
 * in `paths`, set `zipalign` to the path of this program (look in the *Dependencies* section)
