@@ -49,11 +49,12 @@ By default, `cr-patcher` will retrieve the keys, MD5s, and key and URL offsets f
 * `key` - you shouldn't have any reason to change this. The default key guarantees that after patching the game will be able to connect to `cr-proxy`. If you change the key, it won't be. Leave this default unless you know what you're doing.
 * `url` - the address of server which the game will connect to. The default one, `game.clashroyaleapp.com`, is 23 characters long. Yours also has to have 23 characters. If you have a domain, you can add a subdomain and redirect it to the proxy. The official server of Clash Royale is running on port 9339, so is the proxy. The game will always look for a server at this port, that's why there is no `port` field in this config. Also, don't try to add the port like `the.ip.here:1337`
 * `keystore` - if the key used to sign the app changes, you won't be able to update it without uninstalling the previous version before. You can learn more about signing Android apps for example [here](https://developer.android.com/studio/publish/app-signing.html). Also note, the `keypass` and `dname` fields are only required to create a new keystore.  See [here](http://docs.oracle.com/javase/7/docs/technotes/tools/solaris/keytool.html#DName) for how to fill out the `dname` fields (if you really want to, but that isn't important).
+* `paths` - paths of executables of different dependencies. 
 * `versions` - if you need to change something here - experiment, ask around, or wait for someone else to do it for you, when a new version is out 
 
 ## Installation
 
-1. Install [dependencies](#dependencies).
+1. Download the [dependencies](#dependencies) and install if needed.
 2. Copy the `config.json.example` file to `config.json` (so you can do it again when you break something) and fill it in. The changes that you *have* to made are:
 * in `paths`, set `apktool` to the path of your Apktool wrapper script. If you exactly followed the instructions on their website, on Windows, the path is `C:\\Windows\\apktool.bat` while on Linux and Mac `/usr/local/bin/apktool`
 * in `paths`, set `zipalign` to the path of that program (look at [dependencies](#dependencies))
@@ -62,17 +63,18 @@ By default, `cr-patcher` will retrieve the keys, MD5s, and key and URL offsets f
 4. Read the [running](#running) section
 
 ## Dependencies
-
+- [Python 3.5](https://www.python.org/downloads/release/python-350/) to run this script
 - Apktool - [home page](http://ibotpeaches.github.io/Apktool/) - [download & install instructions](http://ibotpeaches.github.io/Apktool/install)
 - `keytool` and `jarsigner` from the [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html), on Windows most likely can be found in `C:\Program Files\Java\<version>\bin\`
 - `zipalign` from the [Android SDK](http://developer.android.com/sdk/index.html#Other)
     
     If you haven't already, install Android Studio, open it, download SDK for any version of Android (the one that will be chosen by default, lastest stable, should be fine). Then, you can find `zipalign` in `<sdk-folder>/build-tools/<version>/zipalign(.exe on Windows)`. 
     
-    For example, on Linux, I found it in `~/Android/Sdk/build-tools/25.0.2/zipalign`
+    For example, on Linux, I found it in `~/Android/Sdk/build-tools/25.0.2/zipalign`, and on Windows in `C:\Program Files (x86)\Android\android-sdk\build-tools\22.0.1\zipalign.exe` (remember to double the `\` or use `/` instead)
     
     If you wouldn't like to download the whole Android Studio, you can scroll the download page down to *Get just the command line tools*. Download the version for your OS, unzip it, run `sdkmanager(.exe)` (this program has a gui), download one version of SDK, just like you would do in Android Studio. Rest works like above ^  
-- [requests](http://python-requests.org/) and [requests-cache](https://github.com/reclosedev/requests-cache)
+- `dd` - on Linux you probably have it, for Windows you can get it [here](http://www.chrysocome.net/downloads/ddrelease64.exe) (you don't need to install anything, just download it)
+- [`requests`](http://python-requests.org/) and [`requests-cache`](https://github.com/reclosedev/requests-cache)
 
     Note: `requests` and `requests-cache` can be installed with:
     
