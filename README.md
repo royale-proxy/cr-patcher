@@ -58,7 +58,7 @@ By default, `cr-patcher` will retrieve the keys, MD5s, and key and URL offsets f
 * in `paths`, set `apktool` to the path of your Apktool wrapper script. If you exactly followed the instructions on their website, on Windows, the path is `C:\\Windows\\apktool.bat` while on Linux and Mac `/usr/local/bin/apktool`
 * in `paths`, set `zipalign` to the path of that program (look at [dependencies](#dependencies))
     **Note:** On Windows, use either `/` to separate folders in path, or use double `\` -> `\\`, because of how json works.
-3. You may want to change a [few more things](#config-expained) in the config
+3. You may want to change a [few more things](#config-explained) in the config
 4. Read the [running](#running) section
 
 ## Dependencies
